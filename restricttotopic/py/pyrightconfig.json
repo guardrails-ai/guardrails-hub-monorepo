@@ -1,0 +1,14 @@
+{
+  "include": ["src"],
+  "exclude": ["**/node_modules", "**/__pycache__"],
+  "reportMissingImports": "error",
+  "reportMissingTypeStubs": false,
+  "pythonVersion": "3.12",
+  "//": "Ported third-party (Tryolabs) validator; relax Optional/overload strictness on unchanged upstream code.",
+  "reportOptionalSubscript": "none",
+  "reportOptionalOperand": "none",
+  "reportOptionalMemberAccess": "none",
+  "reportOperatorIssue": "none",
+  "reportArgumentType": "none",
+  "reportCallIssue": "none"
+}

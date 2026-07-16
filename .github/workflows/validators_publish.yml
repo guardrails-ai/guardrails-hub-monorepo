@@ -1,0 +1,89 @@
+name: Validators Publish
+
+# Change-detected trusted publishing for monorepo validator packages (WS-C.2).
+# On push to main, for each changed `<name>/py` whose version isn't yet tagged:
+# build, publish to public PyPI via OIDC (no token), then tag `<name>-py-<version>`.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*/py/**"
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # OIDC trusted publishing
+  contents: write   # push git tags
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.detect.outputs.packages }}
+      any: ${{ steps.detect.outputs.any }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: detect
+        run: |
+          PKGS=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" \
+            | grep -E '^[^/]+/py/' \
+            | cut -d/ -f1 | sort -u | jq -R . | jq -s -c .)
+          # Fallback for workflow_dispatch / first push: all packages with a py/ dir.
+          if [ "$PKGS" = "[]" ] || [ -z "$PKGS" ]; then
+            PKGS=$(for d in */py; do dirname "$d"; done | sort -u | jq -R . | jq -s -c .)
+          fi
+          echo "packages=$PKGS" >> "$GITHUB_OUTPUT"
+          [ "$PKGS" = "[]" ] && echo "any=false" >> "$GITHUB_OUTPUT" || echo "any=true" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: changes
+    if: needs.changes.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
+    # Per-project trusted publishers (added after the one-time token bootstrap,
+    # see bootstrap_publish.yml) share this single config — owner/repo/workflow,
+    # no environment. Regular (non-pending) publishers have no uniqueness or
+    # count limit, so an environment isn't needed here.
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read version
+        id: ver
+        working-directory: ${{ matrix.package }}/py
+        run: |
+          V=$(python -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "tag=${{ matrix.package }}-py-$V" >> "$GITHUB_OUTPUT"
+      - name: Version-bump guard (abort if tag exists)
+        run: |
+          if git rev-parse "refs/tags/${{ steps.ver.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Tag ${{ steps.ver.outputs.tag }} already exists; skipping publish."
+            echo "SKIP=1" >> "$GITHUB_ENV"
+          fi
+      - name: Build
+        if: env.SKIP != '1'
+        working-directory: ${{ matrix.package }}/py
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+      - name: Publish to PyPI (OIDC, no token)
+        if: env.SKIP != '1'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: ${{ matrix.package }}/py/dist
+      - name: Tag release
+        if: env.SKIP != '1'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "${{ steps.ver.outputs.tag }}"
+          git push origin "${{ steps.ver.outputs.tag }}"

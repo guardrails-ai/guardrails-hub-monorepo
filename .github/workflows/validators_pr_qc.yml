@@ -1,0 +1,130 @@
+name: Validators PR QC
+
+# Change-detected QC for monorepo validator packages (WS-C.1).
+# Computes which `<name>/py` dirs changed, then runs a matrix over
+# {changed validator} x {python 3.10-3.13}: install, lint, type, tests,
+# and the merge-blocking license sweep (Loop 6 / D10).
+#
+# ---------------------------------------------------------------------------
+# REQUIRED SECRETS (set these in repo Settings -> Secrets and variables ->
+# Actions). The Test step injects them for every package; each is only used by
+# the validators that need it. See each package's py/.env.example for details.
+#
+#   OPENAI_API_KEY        detect_prompt_injection, extracted_summary_sentences_match,
+#                         llm_critic, politeness_check, prompt_injection_detector,
+#                         provenance_llm, qa_relevance_llm_eval, relevancy_evaluator,
+#                         response_evaluator, responsiveness_check, saliency_check,
+#                         similar_to_previous_values, unusual_prompt
+#   GOOGLE_MAPS_API_KEY   valid_address
+#   HUGGINGFACE_API_KEY   shieldgemma_2b, llamaguard_7b (gated models); also
+#                         detect_jailbreak / provenance_nli. Exposed to the code
+#                         as HF_TOKEN / HUGGINGFACE_TOKEN in the Test step below.
+#   ANTHROPIC_API_KEY     (reserved — litellm-backed validators)
+#   OPENAI_API_BASE       optional override (extracted_summary_sentences_match)
+# ---------------------------------------------------------------------------
+
+on:
+  pull_request:
+    paths:
+      - "*/py/**"
+      - ".github/workflows/validators_pr_qc.yml"
+      - ".licenses-allow.txt"
+      - ".licenses-exceptions.txt"
+
+permissions:
+  contents: read
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.detect.outputs.packages }}
+      any: ${{ steps.detect.outputs.any }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: detect
+        name: Detect changed validator packages
+        run: |
+          BASE="origin/${{ github.base_ref }}"
+          git fetch origin "${{ github.base_ref }}" --depth=1
+          # Top-level dirs that contain a py/ change in this PR.
+          PKGS=$(git diff --name-only "$BASE"...HEAD \
+            | grep -E '^[^/]+/py/' \
+            | cut -d/ -f1 | sort -u | jq -R . | jq -s -c .)
+          echo "packages=$PKGS" >> "$GITHUB_OUTPUT"
+          if [ "$PKGS" = "[]" ] || [ -z "$PKGS" ]; then
+            echo "any=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "any=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Changed packages: $PKGS"
+
+  qc:
+    needs: changes
+    if: needs.changes.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # {packages} x {python} must stay under GitHub's 256-job matrix cap.
+        # With 65 packages, 3 Python versions = 195 jobs (4 would be 260).
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
+        python: ["3.10", "3.12", "3.13"]
+    defaults:
+      run:
+        working-directory: ${{ matrix.package }}/py
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: System build deps (lxml, etc.)
+        run: sudo apt-get update && sudo apt-get install -y libxml2-dev libxslt1-dev
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          # Consume the per-package lockfile so CI installs the pinned,
+          # fully-resolved runtime dependency set. Best-effort: a few ML dep
+          # trees have universal pins that lack a wheel on a specific Python in
+          # the matrix, so fall back to resolving from pyproject in that case.
+          if [ -f requirements.lock ]; then
+            pip install -r requirements.lock \
+              || echo "::warning::lockfile not installable on this Python; resolving from pyproject"
+          fi
+          make install install-dev
+      - name: Lint
+        run: make lint
+      - name: Type
+        run: make type
+      - name: Test
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          # HF secret is stored under HUGGINGFACE_API_KEY; expose it under the
+          # names the validators actually read.
+          HF_TOKEN: ${{ secrets.HUGGINGFACE_API_KEY }}
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_API_KEY }}
+        run: make test-cov-ci
+      - name: License sweep (Loop 6 / D10)
+        run: make license-check
+
+  # Aggregate gate so branch protection can require a single check.
+  validators-pr-qc:
+    needs: [changes, qc]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify QC result
+        run: |
+          if [ "${{ needs.changes.outputs.any }}" != "true" ]; then
+            echo "No validator packages changed; nothing to QC."
+            exit 0
+          fi
+          if [ "${{ needs.qc.result }}" != "success" ]; then
+            echo "Validator QC failed."
+            exit 1
+          fi
+          echo "Validator QC passed."

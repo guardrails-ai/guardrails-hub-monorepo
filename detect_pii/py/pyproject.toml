@@ -1,0 +1,57 @@
+[project]
+name = "guardrails-ai-detect-pii"
+version = "0.1.0"
+authors = [
+    {name = "Guardrails AI"}
+]
+license = "MIT"
+description = "Detects personally identifiable information (PII) in text, using Microsoft Presidio."
+readme = "README.md"
+requires-python = ">= 3.10,<4"
+dependencies = [
+    "presidio-analyzer~=2.2",
+    "presidio-anonymizer~=2.2",
+    "numpy",
+    "guardrails-ai>=0.4.0",
+    "nltk>=3.8.1,<4.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+    "pytest-cov",
+    "coverage>=7.6.12",
+    "pyright[nodejs]>=1.1.396",
+]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.urls]
+Homepage = "https://guardrailsai.com"
+Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/detect_pii/py"
+Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/detect_pii/py/README.md"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py310"
+exclude = [".git", ".venv", "build", "dist", "node_modules", "site-packages"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pyright]
+include = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

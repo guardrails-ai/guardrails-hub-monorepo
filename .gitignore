@@ -1,0 +1,20 @@
+uber-manifest.json
+.venv
+node_modules
+*Tracking.md
+
+# Local secrets — never commit real values. `.env.example` templates ARE tracked.
+.env
+*.env
+!.env.example
+!*.env.example
+
+# Python build/test artifacts for validator packages
+*/py/dist/
+*/py/build/
+*/py/**/*.egg-info/
+**/__pycache__/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
