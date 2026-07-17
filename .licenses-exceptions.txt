@@ -1,0 +1,29 @@
+# Manually-reviewed license exceptions (D10 / Loop 6).
+# MPL-2.0 is file-level weak-copyleft; these are unmodified transitive deps of
+# guardrails-ai and are acceptable to depend on. Listed packages are excluded
+# from the allow-only sweep via pip-licenses --ignore-packages.
+#
+# package            license                              reason
+# certifi            MPL-2.0                              CA cert bundle, data only, unmodified
+# fqdn               MPL-2.0                              transitive, unmodified
+# orjson             MPL-2.0 AND (Apache-2.0 OR MIT)      transitive, unmodified
+# tqdm               MPL-2.0 AND MIT                      transitive, unmodified
+# python-dateutil     Apache-2.0; BSD           dual-license; ';' collides with allow separator
+# sniffio             Apache-2.0; MIT           dual-license; ';' collides with allow separator
+# tiktoken            MIT                       declares full license text, not the SPDX id
+# guardrails-ai-types MIT (first-party)         license = {file=...} -> full text reported
+# guardrails_hub_types Apache-2.0 (first-party) license = {file=...} -> full text reported
+# setuptools          MIT (build backend)   pip-licenses reports UNKNOWN
+# sentencepiece       Apache-2.0            UNKNOWN in wheel metadata
+# numpy               BSD-3-Clause          misreported by pip-licenses
+# nvidia-cudnn-cu13   NVIDIA cuDNN EULA     *** proprietary *** unmodified transitive CUDA runtime dep of torch (REVIEW)
+# cryptography        Apache-2.0 OR BSD    dual-license misreported (empty license field)
+# sentence-splitter   LGPL-3.0             *** weak copyleft *** unmodified transitive dep (REVIEW)
+# nvidia-cusparselt-cu13 NVIDIA EULA       *** proprietary *** transitive CUDA dep of torch (REVIEW)
+# nvidia-* (cu13)     NVIDIA EULA           *** proprietary *** unmodified transitive CUDA runtime deps of torch, linux-only (REVIEW)
+# namex               UNKNOWN (Apache-2.0)  keras namespace helper; wheel metadata reports UNKNOWN
+# torch               BSD-3-Clause (compound) permissive; pip-licenses reports an unwieldy compound AND-string
+# uvloop              Apache-2.0; MIT       dual-license; ';' collides with allow separator (chromadb dep)
+# google-crc32c       Apache-2.0            wheel metadata reports UNKNOWN
+# guardrails-api-client Apache-2.0 (first-party) license reported as full text
+certifi fqdn orjson tqdm python-dateutil sniffio tiktoken guardrails-ai-types guardrails_hub_types guardrails-api-client setuptools sentencepiece numpy nvidia-cudnn-cu13 cryptography sentence-splitter nvidia-cusparselt-cu13 namex torch uvloop google-crc32c nvidia-cublas nvidia-cuda-cupti nvidia-cuda-nvrtc nvidia-cuda-runtime nvidia-cufft nvidia-cufile nvidia-curand nvidia-cusolver nvidia-cusparse nvidia-nccl-cu13 nvidia-nvjitlink nvidia-nvshmem-cu13 nvidia-nvtx

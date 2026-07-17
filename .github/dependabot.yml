@@ -1,0 +1,32 @@
+version: 2
+
+# WS-D: dependency updates for all validator packages + workflow actions.
+# Grouping keeps minor/patch bumps to a single PR per ecosystem to avoid 65x noise.
+updates:
+  - package-ecosystem: "pip"
+    directories:
+      - "/*/py"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    labels:
+      - "dependencies"
+      - "python"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        update-types:
+          - "minor"
+          - "patch"
+    labels:
+      - "dependencies"
+      - "github-actions"

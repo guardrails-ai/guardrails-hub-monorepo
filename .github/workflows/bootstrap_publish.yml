@@ -1,0 +1,66 @@
+name: Bootstrap Publish (one-time, token auth)
+
+# ONE-TIME bootstrap: publish every validator package to PyPI using an API token,
+# which auto-creates the projects. PyPI's pending-publisher flow can't be used for
+# this (max 3 pending publishers per account, and one shared config can't back many
+# new projects), so we create the projects with a token first. AFTER this runs,
+# add a per-project trusted publisher to each project (owner=guardrails-ai,
+# repo=guardrails-hub-monorepo, workflow=validators_publish.yml, environment blank) — regular
+# per-project publishers have no count/uniqueness limits — then DELETE the token
+# secret. Ongoing releases use validators_publish.yml via OIDC.
+#
+# Requires repo secret PYPI_API_TOKEN (an account-scoped PyPI API token; project
+# scoping isn't possible because the projects don't exist yet).
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository_url:
+        description: "Index to publish to (use TestPyPI first to rehearse)"
+        type: choice
+        default: "https://upload.pypi.org/legacy/"
+        options:
+          - "https://upload.pypi.org/legacy/"
+          - "https://test.pypi.org/legacy/"
+
+permissions:
+  contents: read
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.detect.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: detect
+        run: |
+          PKGS=$(for d in */py; do dirname "$d"; done | sort -u | jq -R . | jq -s -c .)
+          echo "packages=$PKGS" >> "$GITHUB_OUTPUT"
+          echo "Will publish: $PKGS"
+
+  publish:
+    needs: list
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        package: ${{ fromJSON(needs.list.outputs.packages) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build
+        working-directory: ${{ matrix.package }}/py
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+      - name: Publish with token
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: ${{ matrix.package }}/py/dist
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          repository-url: ${{ inputs.repository_url }}
+          skip-existing: true

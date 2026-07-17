@@ -1,0 +1,15 @@
+{
+  "include": ["src"],
+  "exclude": ["**/node_modules", "**/__pycache__"],
+  "reportMissingImports": "error",
+  "reportMissingTypeStubs": false,
+  "pythonVersion": "3.12",
+  "//": "Ported validator with a composite torch/transformers model; relax attribute/optional strictness on the unchanged upstream inference code.",
+  "reportAttributeAccessIssue": "none",
+  "reportOptionalCall": "none",
+  "reportOptionalMemberAccess": "none",
+  "reportCallIssue": "none",
+  "reportArgumentType": "none",
+  "reportReturnType": "none",
+  "reportAssignmentType": "none"
+}

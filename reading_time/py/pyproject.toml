@@ -1,0 +1,53 @@
+[project]
+name = "guardrails-ai-reading-time"
+version = "0.2.0"
+authors = [
+    {name = "Guardrails AI"}
+]
+license = "MIT"
+description = "Ensures that any generated text is less than a maximum expected reading time."
+readme = "README.md"
+requires-python = ">= 3.10,<4"
+dependencies = [
+    "guardrails-ai>=0.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+    "pytest-cov",
+    "coverage>=7.6.12",
+    "pyright[nodejs]>=1.1.396",
+]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.urls]
+Homepage = "https://guardrailsai.com"
+Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/reading_time/py"
+Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/reading_time/py/README.md"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py310"
+exclude = [".git", ".venv", "build", "dist", "node_modules", "site-packages"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pyright]
+include = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
