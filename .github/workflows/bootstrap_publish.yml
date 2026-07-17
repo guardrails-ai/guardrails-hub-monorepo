@@ -32,7 +32,7 @@ jobs:
     outputs:
       packages: ${{ steps.detect.outputs.packages }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: detect
         run: |
           PKGS=$(for d in */py; do dirname "$d"; done | sort -u | jq -R . | jq -s -c .)
@@ -48,7 +48,7 @@ jobs:
       matrix:
         package: ${{ fromJSON(needs.list.outputs.packages) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

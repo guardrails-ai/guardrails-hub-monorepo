@@ -22,7 +22,7 @@ jobs:
       packages: ${{ steps.detect.outputs.packages }}
       any: ${{ steps.detect.outputs.any }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - id: detect
@@ -50,7 +50,7 @@ jobs:
     # no environment. Regular (non-pending) publishers have no uniqueness or
     # count limit, so an environment isn't needed here.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v5
