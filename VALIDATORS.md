@@ -25,6 +25,7 @@ Validators published to public PyPI as `guardrails-ai-<name>`, grouped by risk c
 
 ## Code Exploits
 
+- **Agent Memory Guard** ([`guardrails-ai-agent-memory-guard`](https://pypi.org/project/guardrails-ai-agent-memory-guard/)): OWASP ASI06 memory-poisoning guard: scans LLM output for prompt injection, jailbreaks, structural anomalies, and sensitive-data leakage before it is written to agent memory.
 - **Endpoint Is Reachable** ([`guardrails-ai-endpoint-is-reachable`](https://pypi.org/project/guardrails-ai-endpoint-is-reachable/)): Checks if an endpoint can be reached by making a request to it.
 - **Exclude SQL Predicates** ([`guardrails-ai-exclude-sql-predicates`](https://pypi.org/project/guardrails-ai-exclude-sql-predicates/)): This rule checks for the use of particular SQL predicates in the query. It is important to exclude SQL predicates from the query to prevent SQL injection attacks.
 - **Has Url** ([`guardrails-ai-has-url`](https://pypi.org/project/guardrails-ai-has-url/)): Ensure content contains a url.
