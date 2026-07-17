@@ -22,7 +22,7 @@ jobs:
       packages: ${{ steps.detect.outputs.packages }}
       any: ${{ steps.detect.outputs.any }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
       - id: detect
@@ -50,10 +50,10 @@ jobs:
     # no environment. Regular (non-pending) publishers have no uniqueness or
     # count limit, so an environment isn't needed here.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
         with:
           python-version: "3.12"
       - name: Read version
@@ -77,7 +77,7 @@ jobs:
           python -m build
       - name: Publish to PyPI (OIDC, no token)
         if: env.SKIP != '1'
-        uses: pypa/gh-action-pypi-publish@release/v1
+        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b # v1.14.0
         with:
           packages-dir: ${{ matrix.package }}/py/dist
       - name: Tag release
