@@ -32,6 +32,7 @@ Validators published to public PyPI as `guardrails-ai-<name>`, grouped by risk c
 
 ## Data Leakage
 
+- **African Compliance** ([`guardrails-ai-african-compliance`](https://pypi.org/project/guardrails-ai-african-compliance/)): Validates LLM outputs for African financial and data protection compliance — CBN/CBK thresholds, NDPA/POPIA/KDPA sensitive data, cross-border transfer controls.
 - **Detect PII** ([`guardrails-ai-detect-pii`](https://pypi.org/project/guardrails-ai-detect-pii/)): Detects personally identifiable information (PII) in text, using Microsoft Presidio.
 - **Detect System Prompt Leakage** ([`guardrails-ai-detect-system-prompt-leakage`](https://pypi.org/project/guardrails-ai-detect-system-prompt-leakage/)): Detects system prompt leakage using fuzzy string matching (via `rapidfuzz`) to compare the LLM's response against a provided system prompt
 - **Exclude SQL Predicates** ([`guardrails-ai-exclude-sql-predicates`](https://pypi.org/project/guardrails-ai-exclude-sql-predicates/)): This rule checks for the use of particular SQL predicates in the query. It is important to exclude SQL predicates from the query to prevent SQL injection attacks.
