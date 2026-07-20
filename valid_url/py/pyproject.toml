@@ -1,6 +1,6 @@
 [project]
 name = "guardrails-ai-valid-url"
-version = "0.2.0"
+version = "0.2.1a1"
 authors = [
     {name = "Guardrails AI"}
 ]

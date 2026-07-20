@@ -1,6 +1,6 @@
 [project]
 name = "guardrails-ai-unusual-prompt"
-version = "0.1.0"
+version = "0.1.1a1"
 authors = [
     {name = "Guardrails AI"}
 ]
