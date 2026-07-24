@@ -61,7 +61,9 @@ jobs:
         working-directory: ${{ matrix.package }}/py
         run: |
           V=$(python -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          N=$(python -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['name'])")
           echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "pypi_name=$N" >> "$GITHUB_OUTPUT"
           echo "tag=${{ matrix.package }}-py-$V" >> "$GITHUB_OUTPUT"
       - name: Version-bump guard (abort if tag exists)
         run: |
@@ -87,3 +89,26 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag "${{ steps.ver.outputs.tag }}"
           git push origin "${{ steps.ver.outputs.tag }}"
+      - name: Cut GitHub Release
+        if: env.SKIP != '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ steps.ver.outputs.tag }}"
+          version="${{ steps.ver.outputs.version }}"
+          pypi_name="${{ steps.ver.outputs.pypi_name }}"
+          # Mark PEP 440 pre-releases (e.g. 0.1.1a1) as GitHub pre-releases.
+          prerelease_flag=""
+          if [[ "$version" =~ (a|b|rc)[0-9]*$ ]]; then
+            prerelease_flag="--prerelease"
+          fi
+          # Lean notes: just the PyPI link. Monorepo tags interleave across
+          # packages, so we deliberately skip --generate-notes (its previous-tag
+          # heuristic would pick another package's tag). --latest=false so no
+          # single package's release thrashes the repo's "Latest" badge.
+          gh release create "$tag" \
+            --title "${{ matrix.package }} py v$version" \
+            --notes "Published to PyPI: https://pypi.org/project/$pypi_name/$version/" \
+            --verify-tag \
+            --latest=false \
+            $prerelease_flag
