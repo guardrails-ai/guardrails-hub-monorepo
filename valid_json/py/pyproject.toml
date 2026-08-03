@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/valid_json/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/valid_json/py/README.md"
 
+[tool.guardrails]
+display-name = "Valid JSON"
+tags = ["Formatting", "Invalid Code", "Structured data", "RAG", "string", "object", "list", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

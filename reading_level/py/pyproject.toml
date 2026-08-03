@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/reading_level/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/reading_level/py/README.md"
 
+[tool.guardrails]
+display-name = "Reading Level"
+tags = ["Brand risk", "Etiquette", "Chatbots", "RAG", "Summarization", "Customer Support", "string", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

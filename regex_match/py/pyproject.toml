@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/regex_match/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/regex_match/py/README.md"
 
+[tool.guardrails]
+display-name = "Regex Match"
+tags = ["Formatting", "Structured data", "string", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

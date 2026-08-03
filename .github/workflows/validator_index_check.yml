@@ -1,0 +1,27 @@
+name: Validator index check
+
+# The validator index in README.md is generated from each package's
+# [tool.guardrails] metadata and is consumed programmatically by the validator
+# hub UI. Fail the PR if it drifts from the packages in the repo.
+
+on:
+  pull_request:
+    paths:
+      - "*/py/pyproject.toml"
+      - "README.md"
+      - "scripts/generate_validators_index.py"
+      - ".github/workflows/validator_index_check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+        with:
+          python-version: "3.12"
+      - name: Check README validator index is up to date
+        run: python scripts/generate_validators_index.py --check

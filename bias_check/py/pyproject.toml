@@ -38,6 +38,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/bias_check/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/bias_check/py/README.md"
 
+[tool.guardrails]
+display-name = "Bias Check"
+tags = ["Brand risk", "Chatbots", "Customer Support", "string", "ML", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

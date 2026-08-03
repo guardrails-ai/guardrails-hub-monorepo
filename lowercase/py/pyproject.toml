@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/lowercase/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/lowercase/py/README.md"
 
+[tool.guardrails]
+display-name = "Lowercase"
+tags = ["Formatting", "Structured data", "string", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

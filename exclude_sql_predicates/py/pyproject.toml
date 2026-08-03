@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/exclude_sql_predicates/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/exclude_sql_predicates/py/README.md"
 
+[tool.guardrails]
+display-name = "Exclude SQL Predicates"
+tags = ["Code Exploits", "Data Leakage", "Invalid Code", "Text2SQL", "CodeGen", "string", "sql", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

@@ -35,6 +35,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/secrets_present/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/secrets_present/py/README.md"
 
+[tool.guardrails]
+display-name = "Secrets Present"
+tags = ["Data Leakage", "Chatbots", "CodeGen", "Text2SQL", "string", "code", "Rule", "ML", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

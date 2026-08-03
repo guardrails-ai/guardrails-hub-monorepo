@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/detect_system_prompt_leakage/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/detect_system_prompt_leakage/py/README.md"
 
+[tool.guardrails]
+display-name = "Detect System Prompt Leakage"
+tags = ["Data Leakage"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

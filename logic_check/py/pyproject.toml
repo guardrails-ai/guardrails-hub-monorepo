@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/logic_check/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/logic_check/py/README.md"
 
+[tool.guardrails]
+display-name = "Logic Check"
+tags = ["Brand risk", "Chatbots", "Customer Support", "string", "ML", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

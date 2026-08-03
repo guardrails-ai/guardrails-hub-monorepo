@@ -36,6 +36,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/shieldgemma_2b/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/shieldgemma_2b/py/README.md"
 
+[tool.guardrails]
+display-name = "Shield Gemma"
+tags = ["Etiquette", "Chatbots", "Customer Support", "string", "ML", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

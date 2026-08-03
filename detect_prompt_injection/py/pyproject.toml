@@ -37,6 +37,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/detect_prompt_injection/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/detect_prompt_injection/py/README.md"
 
+[tool.guardrails]
+display-name = "Detect Prompt Injection"
+tags = ["Jailbreaking"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

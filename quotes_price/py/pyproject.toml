@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/quotes_price/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/quotes_price/py/README.md"
 
+[tool.guardrails]
+display-name = "Quotes Price"
+tags = ["Brand risk"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

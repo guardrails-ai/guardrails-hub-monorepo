@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/sky_validator/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/sky_validator/py/README.md"
 
+[tool.guardrails]
+display-name = "Sky Validator"
+tags = ["Brand risk"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

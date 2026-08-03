@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/similar_to_document/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/similar_to_document/py/README.md"
 
+[tool.guardrails]
+display-name = "Similar To Document"
+tags = ["Factuality", "RAG", "Summarization", "string", "ML", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

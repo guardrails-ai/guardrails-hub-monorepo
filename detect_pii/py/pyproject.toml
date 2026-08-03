@@ -37,6 +37,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/detect_pii/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/detect_pii/py/README.md"
 
+[tool.guardrails]
+display-name = "Detect PII"
+tags = ["Data Leakage", "Chatbots", "RAG", "CodeGen", "Structured data", "Customer Support", "string", "ML", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

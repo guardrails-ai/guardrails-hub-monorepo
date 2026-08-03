@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/valid_range/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/valid_range/py/README.md"
 
+[tool.guardrails]
+display-name = "Valid Range"
+tags = ["Formatting", "Chatbots", "RAG", "Structured data", "integer", "float", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/valid_sql/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/valid_sql/py/README.md"
 
+[tool.guardrails]
+display-name = "Valid SQL"
+tags = ["Formatting", "Invalid Code", "CodeGen", "Text2SQL", "sql", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

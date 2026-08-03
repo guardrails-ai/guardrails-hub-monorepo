@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/mentions_drugs/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/mentions_drugs/py/README.md"
 
+[tool.guardrails]
+display-name = "Mentions Drugs"
+tags = ["Etiquette"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

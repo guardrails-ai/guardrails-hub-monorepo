@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/valid_url/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/valid_url/py/README.md"
 
+[tool.guardrails]
+display-name = "Valid URL"
+tags = ["Formatting", "CodeGen", "Customer Support", "RAG", "Chatbots", "string", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

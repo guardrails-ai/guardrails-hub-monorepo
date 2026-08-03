@@ -36,6 +36,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/valid_open_api_spec/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/valid_open_api_spec/py/README.md"
 
+[tool.guardrails]
+display-name = "Valid OpenAPI Specification"
+tags = ["Formatting", "Invalid Code", "CodeGen", "string", "object", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

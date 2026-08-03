@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/endpoint_is_reachable/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/endpoint_is_reachable/py/README.md"
 
+[tool.guardrails]
+display-name = "Endpoint Is Reachable"
+tags = ["Code Exploits", "Invalid Code", "Chatbots", "CodeGen", "Customer Support", "string", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

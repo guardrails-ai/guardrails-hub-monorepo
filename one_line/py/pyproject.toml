@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/one_line/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/one_line/py/README.md"
 
+[tool.guardrails]
+display-name = "One Line"
+tags = ["Formatting", "Structured data", "string", "NA", "Guardrails Certified", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4
