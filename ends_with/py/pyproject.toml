@@ -35,7 +35,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Ends With"
-tags = ["Formatting", "Chatbots", "RAG", "Summarization", "Structured data", "Customer Support", "list", "string", "NA", "Guardrails Certified", "en"]
+tags = ["Formatting", "Chatbots", "RAG", "Summarization", "Structured data", "Customer Support", "list", "string", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

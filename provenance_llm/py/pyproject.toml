@@ -40,7 +40,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Provenance LLM"
-tags = ["Brand risk", "Factuality", "Chatbots", "RAG", "Customer Support", "string", "ML", "LLM", "Guardrails Certified", "en"]
+tags = ["Brand risk", "Factuality", "Chatbots", "RAG", "Customer Support", "string", "ML", "LLM", "en"]
 
 [tool.ruff]
 line-length = 88

@@ -36,7 +36,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Endpoint Is Reachable"
-tags = ["Code Exploits", "Invalid Code", "Chatbots", "CodeGen", "Customer Support", "string", "NA", "Guardrails Certified", "en"]
+tags = ["Code Exploits", "Invalid Code", "Chatbots", "CodeGen", "Customer Support", "string", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

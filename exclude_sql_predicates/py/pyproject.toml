@@ -36,7 +36,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Exclude SQL Predicates"
-tags = ["Code Exploits", "Data Leakage", "Invalid Code", "Text2SQL", "CodeGen", "string", "sql", "NA", "Guardrails Certified", "en"]
+tags = ["Code Exploits", "Data Leakage", "Invalid Code", "Text2SQL", "CodeGen", "string", "sql", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

@@ -39,7 +39,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Wiki Provenance"
-tags = ["Factuality", "Chatbots", "RAG", "string", "NA", "Guardrails Certified", "en"]
+tags = ["Factuality", "Chatbots", "RAG", "string", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

@@ -35,7 +35,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Valid Range"
-tags = ["Formatting", "Chatbots", "RAG", "Structured data", "integer", "float", "NA", "Guardrails Certified", "en"]
+tags = ["Formatting", "Chatbots", "RAG", "Structured data", "integer", "float", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

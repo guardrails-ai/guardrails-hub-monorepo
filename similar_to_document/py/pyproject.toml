@@ -36,7 +36,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Similar To Document"
-tags = ["Factuality", "RAG", "Summarization", "string", "ML", "Guardrails Certified", "en"]
+tags = ["Factuality", "RAG", "Summarization", "string", "ML", "en"]
 
 [tool.ruff]
 line-length = 88

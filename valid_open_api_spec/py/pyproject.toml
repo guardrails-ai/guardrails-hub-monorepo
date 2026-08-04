@@ -38,7 +38,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Valid OpenAPI Specification"
-tags = ["Formatting", "Invalid Code", "CodeGen", "string", "object", "NA", "Guardrails Certified", "en"]
+tags = ["Formatting", "Invalid Code", "CodeGen", "string", "object", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

@@ -36,7 +36,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Ban List"
-tags = ["Brand risk", "Chatbots", "Customer Support", "string", "ML", "Guardrails Certified", "en"]
+tags = ["Brand risk", "Chatbots", "Customer Support", "string", "ML", "en"]
 
 [tool.ruff]
 line-length = 88

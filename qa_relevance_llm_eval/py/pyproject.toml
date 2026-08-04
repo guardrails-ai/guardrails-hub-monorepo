@@ -36,7 +36,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "QA Relevance LLM Eval"
-tags = ["Brand risk", "Jailbreaking", "Chatbots", "Customer Support", "string", "LLM", "Guardrails Certified", "en"]
+tags = ["Brand risk", "Jailbreaking", "Chatbots", "Customer Support", "string", "LLM", "en"]
 
 [tool.ruff]
 line-length = 88

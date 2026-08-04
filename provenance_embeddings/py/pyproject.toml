@@ -38,7 +38,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Provenance Embeddings"
-tags = ["Brand risk", "Factuality", "Chatbots", "RAG", "Customer Support", "string", "ML", "Guardrails Certified", "en"]
+tags = ["Brand risk", "Factuality", "Chatbots", "RAG", "Customer Support", "string", "ML", "en"]
 
 [tool.ruff]
 line-length = 88

@@ -36,7 +36,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Valid Address"
-tags = ["Factuality", "Formatting", "Structured data", "Chatbots", "Customer Support", "string", "NA", "Guardrails Certified", "en"]
+tags = ["Factuality", "Formatting", "Structured data", "Chatbots", "Customer Support", "string", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

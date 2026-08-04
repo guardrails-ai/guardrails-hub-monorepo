@@ -36,7 +36,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Reading Level"
-tags = ["Brand risk", "Etiquette", "Chatbots", "RAG", "Summarization", "Customer Support", "string", "NA", "Guardrails Certified", "en"]
+tags = ["Brand risk", "Etiquette", "Chatbots", "RAG", "Summarization", "Customer Support", "string", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

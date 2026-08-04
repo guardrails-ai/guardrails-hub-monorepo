@@ -35,7 +35,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Valid JSON"
-tags = ["Formatting", "Invalid Code", "Structured data", "RAG", "string", "object", "list", "NA", "Guardrails Certified", "en"]
+tags = ["Formatting", "Invalid Code", "Structured data", "RAG", "string", "object", "list", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

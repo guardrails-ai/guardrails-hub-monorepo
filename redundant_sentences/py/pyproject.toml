@@ -37,7 +37,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Redundant Sentences"
-tags = ["Etiquette", "Summarization", "string", "ML", "Guardrails Certified", "en"]
+tags = ["Etiquette", "Summarization", "string", "ML", "en"]
 
 [tool.ruff]
 line-length = 88

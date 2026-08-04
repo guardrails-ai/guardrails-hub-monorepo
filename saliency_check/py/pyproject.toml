@@ -36,7 +36,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Saliency Check"
-tags = ["Factuality", "Summarization", "string", "LLM", "Guardrails Certified", "en"]
+tags = ["Factuality", "Summarization", "string", "LLM", "en"]
 
 [tool.ruff]
 line-length = 88

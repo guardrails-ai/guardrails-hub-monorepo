@@ -3,7 +3,7 @@
 Guidance for working in this repo. It's a **public** monorepo of Guardrails-AI-owned
 validators, published to public PyPI as `guardrails-ai-<name>` and importable from the
 PEP 420 `guardrails_ai` namespace. See [README.md](./README.md) for the high-level
-layout and the generated validator index in [README.md](./README.md#validator-index) for
+layout and the generated [All Hub Validators](./README.md#all-hub-validators) index for
 the catalog.
 
 ## Repo conventions
@@ -118,15 +118,16 @@ from guardrails_ai.my_validator import MyValidator
 
 ### 4. Register it in the catalog
 
-The catalog is the **generated validator index** in [README.md](./README.md#validator-index).
+The catalog is the **generated [All Hub Validators](./README.md#all-hub-validators) index** in README.md.
 Don't hand-edit it. Instead give the package its display name and tags in `py/pyproject.toml`:
 
 ```toml
 [tool.guardrails]
 display-name = "My Validator"
 # Risk categories first, then use cases / content types / infrastructure /
-# certification / language. These must come from the hub's tag vocabulary — the
-# hub UI groups tags by matching them against it and drops unrecognized values.
+# language. Tags live here and nowhere else — the hub UI reads them straight
+# from pyproject.toml, so they must come from the hub's tag vocabulary; it drops
+# values it doesn't recognize.
 tags = ["Data Leakage", "Chatbots", "string", "ML"]
 ```
 

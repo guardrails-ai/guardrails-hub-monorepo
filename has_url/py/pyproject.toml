@@ -35,7 +35,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Has Url"
-tags = ["Code Exploits", "Jailbreaking", "Chatbots", "CodeGen", "Customer Support", "string", "NA", "Guardrails Certified", "en"]
+tags = ["Code Exploits", "Jailbreaking", "Chatbots", "CodeGen", "Customer Support", "string", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

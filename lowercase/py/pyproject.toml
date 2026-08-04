@@ -35,7 +35,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Lowercase"
-tags = ["Formatting", "Structured data", "string", "NA", "Guardrails Certified", "en"]
+tags = ["Formatting", "Structured data", "string", "NA", "en"]
 
 [tool.ruff]
 line-length = 88

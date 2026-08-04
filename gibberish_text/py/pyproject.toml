@@ -38,7 +38,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Gibberish Text"
-tags = ["Brand risk", "Factuality", "Formatting", "Invalid Code", "Chatbots", "RAG", "CodeGen", "Structured data", "Customer Support", "string", "ML", "Guardrails Certified", "en"]
+tags = ["Brand risk", "Factuality", "Formatting", "Invalid Code", "Chatbots", "RAG", "CodeGen", "Structured data", "Customer Support", "string", "ML", "en"]
 
 [tool.ruff]
 line-length = 88

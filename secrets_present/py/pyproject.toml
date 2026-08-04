@@ -37,7 +37,7 @@ Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/m
 
 [tool.guardrails]
 display-name = "Secrets Present"
-tags = ["Data Leakage", "Chatbots", "CodeGen", "Text2SQL", "string", "code", "Rule", "ML", "Guardrails Certified", "en"]
+tags = ["Data Leakage", "Chatbots", "CodeGen", "Text2SQL", "string", "code", "Rule", "ML", "en"]
 
 [tool.ruff]
 line-length = 88
