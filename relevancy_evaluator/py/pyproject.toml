@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/relevancy_evaluator/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/relevancy_evaluator/py/README.md"
 
+[tool.guardrails]
+display-name = "Relevancy Evaluator"
+tags = ["Brand risk"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/unusual_prompt/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/unusual_prompt/py/README.md"
 
+[tool.guardrails]
+display-name = "Unusual Prompt"
+tags = ["Etiquette", "Jailbreaking", "Chatbots", "Customer Support", "string", "LLM", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

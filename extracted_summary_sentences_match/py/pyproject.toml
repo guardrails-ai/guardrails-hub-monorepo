@@ -36,6 +36,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/extracted_summary_sentences_match/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/extracted_summary_sentences_match/py/README.md"
 
+[tool.guardrails]
+display-name = "Extracted Summary Sentences Match"
+tags = ["Brand risk", "Factuality", "Summarization", "string", "ML", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

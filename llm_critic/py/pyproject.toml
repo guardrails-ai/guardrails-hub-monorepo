@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/llm_critic/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/llm_critic/py/README.md"
 
+[tool.guardrails]
+display-name = "LLM Critic"
+tags = ["Etiquette", "Factuality", "Chatbots", "RAG", "Customer Support", "string", "LLM", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

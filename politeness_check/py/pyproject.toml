@@ -35,6 +35,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/politeness_check/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/politeness_check/py/README.md"
 
+[tool.guardrails]
+display-name = "Politeness Check"
+tags = ["Etiquette", "Chatbots", "Customer Support", "string", "LLM", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

@@ -36,6 +36,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/nsfw_text/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/nsfw_text/py/README.md"
 
+[tool.guardrails]
+display-name = "NSFW Text"
+tags = ["Etiquette", "Chatbots", "Customer Support", "string", "ML", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

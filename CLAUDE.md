@@ -3,7 +3,8 @@
 Guidance for working in this repo. It's a **public** monorepo of Guardrails-AI-owned
 validators, published to public PyPI as `guardrails-ai-<name>` and importable from the
 PEP 420 `guardrails_ai` namespace. See [README.md](./README.md) for the high-level
-layout and [VALIDATORS.md](./VALIDATORS.md) for the catalog.
+layout and the generated [All Hub Validators](./README.md#all-hub-validators) index for
+the catalog.
 
 ## Repo conventions
 
@@ -117,8 +118,28 @@ from guardrails_ai.my_validator import MyValidator
 
 ### 4. Register it in the catalog
 
-Add an entry to [VALIDATORS.md](./VALIDATORS.md) under the appropriate risk category:
-`- **Display Name** ([`guardrails-ai-<name>`](https://pypi.org/project/guardrails-ai-<name>/)): description.`
+The catalog is the **generated [All Hub Validators](./README.md#all-hub-validators) index** in README.md.
+Don't hand-edit it. Instead give the package its display name and tags in `py/pyproject.toml`:
+
+```toml
+[tool.guardrails]
+display-name = "My Validator"
+# Risk categories first, then use cases / content types / infrastructure /
+# language. Tags live here and nowhere else — the hub UI reads them straight
+# from pyproject.toml, so they must come from the hub's tag vocabulary; it drops
+# values it doesn't recognize.
+tags = ["Data Leakage", "Chatbots", "string", "ML"]
+```
+
+Then regenerate (CI fails the PR if the index is stale — `validator_index_check.yml`):
+
+```bash
+python scripts/generate_validators_index.py
+```
+
+The index is parsed programmatically by the [validator hub UI](https://guardrailsai.com/hub)
+to build its validator list and detail pages, so the entry format is a contract. See the
+docstring in [`scripts/generate_validators_index.py`](./scripts/generate_validators_index.py).
 
 ### 5. Lockfile
 

@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/valid_length/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/valid_length/py/README.md"
 
+[tool.guardrails]
+display-name = "Valid Length"
+tags = ["Formatting", "Chatbots", "Summarization", "string", "NA", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

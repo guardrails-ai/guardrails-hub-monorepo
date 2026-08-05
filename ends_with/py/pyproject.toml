@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/ends_with/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/ends_with/py/README.md"
 
+[tool.guardrails]
+display-name = "Ends With"
+tags = ["Formatting", "Chatbots", "RAG", "Summarization", "Structured data", "Customer Support", "list", "string", "NA", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

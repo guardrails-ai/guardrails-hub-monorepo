@@ -38,6 +38,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/provenance_nli/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/provenance_nli/py/README.md"
 
+[tool.guardrails]
+display-name = "Provenance NLI"
+tags = ["Factuality"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

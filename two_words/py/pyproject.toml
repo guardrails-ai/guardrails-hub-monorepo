@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/two_words/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/two_words/py/README.md"
 
+[tool.guardrails]
+display-name = "Two Words"
+tags = ["Formatting", "Structured data", "string", "NA", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

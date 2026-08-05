@@ -39,6 +39,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/restricttotopic/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/restricttotopic/py/README.md"
 
+[tool.guardrails]
+display-name = "Restrict To Topic"
+tags = ["Etiquette"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

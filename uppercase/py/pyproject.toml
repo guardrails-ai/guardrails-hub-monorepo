@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/uppercase/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/uppercase/py/README.md"
 
+[tool.guardrails]
+display-name = "Uppercase"
+tags = ["Formatting", "Structured data", "string", "NA", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/contains_string/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/contains_string/py/README.md"
 
+[tool.guardrails]
+display-name = "Contains String"
+tags = ["Formatting", "Chatbots", "Structured data", "Customer Support", "string", "NA", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

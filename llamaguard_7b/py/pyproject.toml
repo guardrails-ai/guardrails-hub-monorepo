@@ -33,6 +33,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/llamaguard_7b/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/llamaguard_7b/py/README.md"
 
+[tool.guardrails]
+display-name = "Llama Guard"
+tags = ["Etiquette", "Chatbots", "Customer Support", "string", "ML", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

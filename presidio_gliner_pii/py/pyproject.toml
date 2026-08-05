@@ -36,6 +36,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/presidio_gliner_pii/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/presidio_gliner_pii/py/README.md"
 
+[tool.guardrails]
+display-name = "Presidio Gliner PII"
+tags = ["Data Leakage"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

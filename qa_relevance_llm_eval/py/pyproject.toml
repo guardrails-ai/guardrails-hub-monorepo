@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/qa_relevance_llm_eval/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/qa_relevance_llm_eval/py/README.md"
 
+[tool.guardrails]
+display-name = "QA Relevance LLM Eval"
+tags = ["Brand risk", "Jailbreaking", "Chatbots", "Customer Support", "string", "LLM", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

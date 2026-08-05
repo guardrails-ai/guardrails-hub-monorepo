@@ -37,6 +37,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/toxic_language/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/toxic_language/py/README.md"
 
+[tool.guardrails]
+display-name = "Toxic Language"
+tags = ["Etiquette", "Chatbots", "Customer Support", "string", "ML", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

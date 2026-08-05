@@ -35,6 +35,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/similar_to_previous_values/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/similar_to_previous_values/py/README.md"
 
+[tool.guardrails]
+display-name = "Similar To Previous Values"
+tags = ["Factuality", "Structured data", "string", "integer", "ML", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

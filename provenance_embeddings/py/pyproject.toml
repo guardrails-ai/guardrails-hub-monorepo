@@ -36,6 +36,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/provenance_embeddings/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/provenance_embeddings/py/README.md"
 
+[tool.guardrails]
+display-name = "Provenance Embeddings"
+tags = ["Brand risk", "Factuality", "Chatbots", "RAG", "Customer Support", "string", "ML", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

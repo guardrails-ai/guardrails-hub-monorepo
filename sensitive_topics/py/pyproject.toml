@@ -34,6 +34,10 @@ Homepage = "https://guardrailsai.com"
 Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/sensitive_topics/py"
 Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/sensitive_topics/py/README.md"
 
+[tool.guardrails]
+display-name = "Sensitive Topic"
+tags = ["Etiquette", "Chatbots", "Customer Support", "string", "ML", "en"]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4
