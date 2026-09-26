@@ -2,12 +2,48 @@ import os
 from pathlib import Path
 
 from cached_path import cached_path
-from transformers import pipeline
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
+from transformers.configuration_utils import PretrainedConfig
+from transformers.models.auto.configuration_auto import CONFIG_MAPPING
 
 
 MODEL_CACHE_DIR = os.environ.get(
     "GUARDRAILS_MODEL_CACHE_PATH_OVERRIDE", Path.home() / ".cache" / "guardrails_cache"
 )
+
+
+def get_text_classifier_pipeline(model_name: str, **pipe_kwargs):
+    """Build a text-classification pipeline for a hub model name, working around
+    hub models whose config publishes an id2label/label2id map with integer
+    values (e.g. {"0": 0, "1": 1}) instead of strings -- zhx123/ftrobertallm is
+    one such model. Recent huggingface_hub versions strictly validate
+    PretrainedConfig fields, so AutoConfig.from_pretrained(model_name) raises
+    StrictDataclassFieldValidationError before we ever get a config object back
+    to fix.
+
+    Passing config=<patched config> alongside the model name string to
+    pipeline() does not avoid this either: pipeline() calls
+    AutoTokenizer.from_pretrained(model_name) internally, which re-derives (and
+    re-validates) the config from the name, hitting the same error again. The
+    model and tokenizer must be built explicitly with the patched config and
+    passed in as objects, not as a name string, for pipeline() to skip that
+    re-validation.
+    """
+    config_dict, _ = PretrainedConfig.get_config_dict(model_name)
+    for key in ("id2label", "label2id"):
+        value = config_dict.get(key)
+        if isinstance(value, dict):
+            config_dict[key] = {str(k): str(v) for k, v in value.items()}
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+    config = config_class.from_dict(config_dict)
+
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name, config=config
+    )
+    tokenizer = AutoTokenizer.from_pretrained(model_name, config=config)
+    return pipeline(
+        task="text-classification", model=model, tokenizer=tokenizer, **pipe_kwargs
+    )
 
 
 # This is more or less something that belongs in a manifest as JSON.
