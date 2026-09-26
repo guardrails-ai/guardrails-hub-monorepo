@@ -4,7 +4,7 @@ from typing import Callable, List, Optional, Union, Any
 
 import torch
 from torch.nn import functional as F
-from transformers import pipeline, AutoTokenizer, AutoModel
+from transformers import AutoTokenizer, AutoModel
 
 from guardrails.validator_base import (
     FailResult,
@@ -17,6 +17,7 @@ from .resources import (
     KNOWN_ATTACKS,
     get_tokenizer_and_model_by_path,
     get_pipeline_by_path,
+    get_text_classifier_pipeline,
 )
 from .models import PromptSaturationDetectorV3
 
@@ -95,8 +96,7 @@ class DetectJailbreak(Validator):
                 self.saturation_attack_detector = PromptSaturationDetectorV3(
                     device=torch.device(device),
                 )
-                self.text_classifier = pipeline(
-                    "text-classification",
+                self.text_classifier = get_text_classifier_pipeline(
                     DetectJailbreak.TEXT_CLASSIFIER_NAME,
                     max_length=512,  # HACK: Fix classifier size.
                     truncation=True,
