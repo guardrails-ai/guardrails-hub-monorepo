@@ -1,4 +1,6 @@
-from transformers import pipeline, AutoTokenizer, AutoModel
+from transformers import AutoTokenizer, AutoModel
+
+from guardrails_ai.detect_jailbreak.resources import load_text_classification_pipeline
 
 print("post-install starting...")
 # TODO: It's not clear if the DetectJailbreak will be on the path yet.
@@ -11,5 +13,5 @@ print("Fetching model 2 of 3 (Embedding)")
 AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 print("Fetching model 3 of 3 (Detection)")
-pipeline("text-classification", "zhx123/ftrobertallm")
+load_text_classification_pipeline("zhx123/ftrobertallm")
 print("post-install complete!")
