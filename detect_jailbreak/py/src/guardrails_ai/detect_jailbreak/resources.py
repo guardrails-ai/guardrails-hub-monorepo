@@ -2,7 +2,13 @@ import os
 from pathlib import Path
 
 from cached_path import cached_path
-from transformers import pipeline
+from transformers import (
+    AutoConfig,
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    PretrainedConfig,
+    pipeline,
+)
 
 
 MODEL_CACHE_DIR = os.environ.get(
@@ -68,6 +74,42 @@ def get_tokenizer_and_model_by_path(path, submodel_name, tokenizer_class, model_
         )
     )
     return tokenizer, model
+
+
+def _load_sanitized_config(model_name_or_path: str) -> PretrainedConfig:
+    """Load a model's config, coercing a malformed id2label/label2id into the
+    dict[str, str] shape huggingface_hub's strict PretrainedConfig validation
+    requires.
+
+    Some hub models (e.g. zhx123/ftrobertallm, used by TEXT_CLASSIFIER_NAME)
+    publish id2label with non-string label values, e.g. {"0": 0, "1": 1}
+    instead of {"0": "LABEL_0", "1": "LABEL_1"}. AutoConfig/AutoModel/
+    AutoTokenizer .from_pretrained() all construct this config internally and
+    raise StrictDataclassFieldValidationError before we would ever get a
+    chance to fix it up, so the config has to be rebuilt from the raw
+    dict returned by get_config_dict(), which runs before validation.
+    """
+    config_dict, _ = PretrainedConfig.get_config_dict(model_name_or_path)
+    model_type = config_dict.pop("model_type")
+    for key in ("id2label", "label2id"):
+        value = config_dict.get(key)
+        if isinstance(value, dict):
+            config_dict[key] = {k: str(v) for k, v in value.items()}
+    return AutoConfig.for_model(model_type, **config_dict)
+
+
+def load_text_classification_pipeline(model_name_or_path: str, **pipe_kwargs):
+    """pipeline("text-classification", model_name_or_path, **pipe_kwargs), but
+    tolerant of a hub config whose id2label/label2id values aren't strings.
+    """
+    config = _load_sanitized_config(model_name_or_path)
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name_or_path, config=config
+    )
+    tokenizer = AutoTokenizer.from_pretrained(model_name_or_path, config=config)
+    return pipeline(
+        "text-classification", model=model, tokenizer=tokenizer, **pipe_kwargs
+    )
 
 
 def get_pipeline_by_path(path, submodel_name: str, task: str, **pipe_kwargs):
