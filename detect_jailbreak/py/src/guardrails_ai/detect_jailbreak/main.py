@@ -4,7 +4,7 @@ from typing import Callable, List, Optional, Union, Any
 
 import torch
 from torch.nn import functional as F
-from transformers import pipeline, AutoTokenizer, AutoModel
+from transformers import AutoConfig, AutoModel, AutoTokenizer, pipeline
 
 from guardrails.validator_base import (
     FailResult,
@@ -95,9 +95,18 @@ class DetectJailbreak(Validator):
                 self.saturation_attack_detector = PromptSaturationDetectorV3(
                     device=torch.device(device),
                 )
+                text_classifier_config = AutoConfig.from_pretrained(
+                    DetectJailbreak.TEXT_CLASSIFIER_NAME
+                )
+                if text_classifier_config.id2label:
+                    text_classifier_config.id2label = {
+                        int(k): str(v)
+                        for k, v in text_classifier_config.id2label.items()
+                    }
                 self.text_classifier = pipeline(
                     "text-classification",
                     DetectJailbreak.TEXT_CLASSIFIER_NAME,
+                    config=text_classifier_config,
                     max_length=512,  # HACK: Fix classifier size.
                     truncation=True,
                     device=device,
@@ -207,10 +216,12 @@ class DetectJailbreak(Validator):
         scores = list()  # We want to remap so 0 is 'safe' and 1 is 'unsafe'.
         for pred in predictions:
             old_score = pred[score_field]
-            is_safe = pred[label_field] == safe_case
+            label = pred[label_field]
+            is_safe = label == safe_case or str(label) == str(safe_case)
             assert (
-                pred[label_field] in {safe_case, fail_case} and 0.0 <= old_score <= 1.0
-            )
+                label in {safe_case, fail_case}
+                or str(label) in {str(safe_case), str(fail_case)}
+            ) and 0.0 <= old_score <= 1.0
             if is_safe:
                 new_score = 0.5 - (old_score * 0.5)
             else:

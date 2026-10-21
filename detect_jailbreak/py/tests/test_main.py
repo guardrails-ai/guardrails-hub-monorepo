@@ -48,3 +48,47 @@ def test_fail():
     with patch.object(DetectJailbreak, "_inference", _fake_inference):
         result = guard.parse(text)
     assert not result.validation_passed
+
+
+def test_predict_and_remap_with_string_labels():
+    validator = DetectJailbreak(use_local=False)
+
+    def fake_model(prompts):
+        return [
+            {"label": "0", "score": 0.9},
+            {"label": "1", "score": 0.8},
+        ]
+
+    scores = validator._predict_and_remap(
+        fake_model,
+        ["safe prompt", "unsafe prompt"],
+        "label",
+        "score",
+        DetectJailbreak.TEXT_CLASSIFIER_PASS_LABEL,
+        DetectJailbreak.TEXT_CLASSIFIER_FAIL_LABEL,
+    )
+    assert len(scores) == 2
+    assert abs(scores[0] - 0.05) < 1e-5
+    assert abs(scores[1] - 0.90) < 1e-5
+
+
+def test_predict_and_remap_with_int_labels():
+    validator = DetectJailbreak(use_local=False)
+
+    def fake_model(prompts):
+        return [
+            {"label": 0, "score": 0.9},
+            {"label": 1, "score": 0.8},
+        ]
+
+    scores = validator._predict_and_remap(
+        fake_model,
+        ["safe prompt", "unsafe prompt"],
+        "label",
+        "score",
+        DetectJailbreak.TEXT_CLASSIFIER_PASS_LABEL,
+        DetectJailbreak.TEXT_CLASSIFIER_FAIL_LABEL,
+    )
+    assert len(scores) == 2
+    assert abs(scores[0] - 0.05) < 1e-5
+    assert abs(scores[1] - 0.90) < 1e-5
