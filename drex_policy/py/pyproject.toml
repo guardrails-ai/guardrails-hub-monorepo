@@ -1,0 +1,58 @@
+[project]
+name = "guardrails-ai-drex-policy"
+version = "0.1.0"
+authors = [
+    {name = "Nace.AI"}
+]
+license = "MIT"
+description = "Checks text, or text with images, against a Drex noul or score question and fails when the answer crosses a threshold."
+readme = "README.md"
+requires-python = ">= 3.10,<4"
+dependencies = [
+    "guardrails-ai>=0.4.0",
+    "nace-sdk>=0.6.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+    "pytest-cov",
+    "coverage>=7.6.12",
+    "pyright[nodejs]>=1.1.396",
+]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.urls]
+Homepage = "https://nace.ai"
+Repository = "https://github.com/guardrails-ai/guardrails-hub-monorepo/tree/main/drex_policy/py"
+Documentation = "https://github.com/guardrails-ai/guardrails-hub-monorepo/blob/main/drex_policy/py/README.md"
+
+[tool.guardrails]
+display-name = "Drex Policy"
+tags = ["Etiquette", "Data Leakage", "Jailbreaking", "Brand risk", "Chatbots", "Customer Support", "string", "LLM", "en"]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py311"
+exclude = [".git", ".venv", "build", "dist", "node_modules", "site-packages", "*.md"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pyright]
+include = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
